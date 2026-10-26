@@ -150,18 +150,4 @@ $(function () {
   }
   setupFooterYear();
 
-  // Let the browser compose an email from the contact form fields.
-  function setupContactForm() {
-    $(".contact-form").on("submit", function () {
-      const $form = $(this);
-      const subject = encodeURIComponent("Portfolio contact from " + $form.find('[name="name"]').val());
-      const message = encodeURIComponent(
-        "Name: " + $form.find('[name="name"]').val() + "\n" +
-        "Email: " + $form.find('[name="email"]').val() + "\n\n" +
-        $form.find('[name="message"]').val()
-      );
-      this.action = "mailto:patricianicole.santos01@gmail.com?subject=" + subject + "&body=" + message;
-    });
-  }
-  setupContactForm();
 });
