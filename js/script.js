@@ -150,4 +150,27 @@ $(function () {
   }
   setupFooterYear();
 
+  // Match the desktop profile photo's bottom edge to the final About fact row.
+  function setupProfileImageAlignment() {
+    const aboutCopy = document.querySelector(".about-copy");
+    const profileImage = document.querySelector(".profile-card img");
+    if (!aboutCopy || !profileImage) return;
+
+    function alignImage() {
+      if (window.innerWidth >= 801) {
+        profileImage.style.height = aboutCopy.offsetHeight + "px";
+      } else {
+        profileImage.style.removeProperty("height");
+      }
+    }
+
+    alignImage();
+    if ("ResizeObserver" in window) {
+      const observer = new ResizeObserver(alignImage);
+      observer.observe(aboutCopy);
+    }
+    $(window).on("resize", alignImage);
+  }
+  setupProfileImageAlignment();
+
 });
